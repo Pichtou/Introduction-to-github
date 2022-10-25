@@ -25,8 +25,15 @@ jobs:
           run: |
             npm install remark-cli remark-preset-lint-consistent
             npx remark . --use remark-preset-lint-consistent --frail
-
+            
+        - run: mkdir -p public/
+        - run: echo hello > public/world.txt
+        
         - uses: actions/upload-artifact@main
           with:
             name: remark-lint-report
             path: public/
+        - uses: actions/upload-artifact@v3
+          with:
+            name: my-artifact
+            path: public/world.txt
